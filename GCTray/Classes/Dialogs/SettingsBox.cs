@@ -36,7 +36,7 @@ namespace GCTray
         private void buttonBrowse_Click(object sender, EventArgs e)
         {
             SetAthleteLibrary();
-            tbProfileDirectory.Text = Properties.Settings.Default.AthleteLibrary;
+            
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
