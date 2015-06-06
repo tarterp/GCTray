@@ -67,7 +67,23 @@ namespace GCTray
                     Profile p = new Profile(folder.Name);
                     p.athleteFullPath = athleteLibrary + '\\' + p.name;
                     DirectoryInfo athleteDir = new DirectoryInfo(p.athleteFullPath);
-                    FileInfo[] files = athleteDir.GetFiles("*.GCSync.lck", SearchOption.TopDirectoryOnly);
+                    FileInfo[] files = {null};
+                    try
+                    {
+                        files = athleteDir.GetFiles("*.GCSync.lck", SearchOption.TopDirectoryOnly);
+                    }
+                    catch(Exception e)
+                    {
+                        DialogResult d = MessageBox.Show(e.Message + "\r\n\r\nWould you like to continue running GCTray without this profile?", "Error Opening Profile Directory",MessageBoxButtons.YesNo);
+                        if(d == DialogResult.Yes)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            Application.Exit();
+                        }
+                    }
 
                     p.lockfile = athleteLibrary + "\\" + p.name + "\\" + username + ".GCSync.lck";
 
