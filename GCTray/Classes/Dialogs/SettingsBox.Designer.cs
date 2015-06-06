@@ -36,6 +36,7 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.labelUserName = new System.Windows.Forms.Label();
             this.tbUserName = new System.Windows.Forms.TextBox();
+            this.cbAutorun = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // buttonSave
@@ -108,11 +109,22 @@
             this.tbUserName.Size = new System.Drawing.Size(224, 20);
             this.tbUserName.TabIndex = 6;
             // 
+            // cbAutorun
+            // 
+            this.cbAutorun.AutoSize = true;
+            this.cbAutorun.Location = new System.Drawing.Point(13, 97);
+            this.cbAutorun.Name = "cbAutorun";
+            this.cbAutorun.Size = new System.Drawing.Size(88, 17);
+            this.cbAutorun.TabIndex = 7;
+            this.cbAutorun.Text = "Run At Login";
+            this.cbAutorun.UseVisualStyleBackColor = true;
+            // 
             // SettingsBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(424, 134);
+            this.Controls.Add(this.cbAutorun);
             this.Controls.Add(this.tbUserName);
             this.Controls.Add(this.labelUserName);
             this.Controls.Add(this.buttonCancel);
@@ -138,6 +150,7 @@
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Label labelUserName;
         private System.Windows.Forms.TextBox tbUserName;
+        private System.Windows.Forms.CheckBox cbAutorun;
 
     }
 }

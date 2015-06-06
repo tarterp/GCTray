@@ -46,5 +46,17 @@ namespace GCTray.Properties {
                 this["UserName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Autorun {
+            get {
+                return ((bool)(this["Autorun"]));
+            }
+            set {
+                this["Autorun"] = value;
+            }
+        }
     }
 }
