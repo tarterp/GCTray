@@ -72,7 +72,22 @@ namespace GCTray
                 item.Enabled = p.enabled;
                 item.Name = p.name;
                 item.Click += new EventHandler(LaunchProfile);
+                
+                /* Future Goal...
+                 * I would like to add lauch as a sub-menu item
+                 * also have a 'locked by' sub-item
+                 * now if a profile is locked you can tell by whom
+                 * also quite possibly at a take control option
+                 * If I go this route I can't disable the main name anymore
+                 * only the launch button because the menu won't extend when
+                 * disabled
+                 
+                ToolStripMenuItem tm = new ToolStripMenuItem("TEST");
+                item.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {tm});
+               */
+
                 menu.Items.Insert(2, item);
+
             }
         }
 
