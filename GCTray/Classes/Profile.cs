@@ -4,6 +4,7 @@ using System.Text;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace GCTray
 {
@@ -12,6 +13,7 @@ namespace GCTray
         public EventHandler<ProfileChangedEvent> ProfileChanged;
         private LockWatcher lockFileWatcher;
         public string name {  get;  set; }
+        public string athleteFullPath { get; set; }
         public string lockfile { get; set; }
         public bool enabled {  get; private set; }
         public string lockedBy;
@@ -27,6 +29,8 @@ namespace GCTray
         {
             if (this.pid != 0)
             {
+                // Could throw exception if PID no longer exists
+                // This shouldn't be a case
                 Process p = Process.GetProcessById(this.pid);
                 File.Delete(this.lockfile);
                 p.CloseMainWindow();
@@ -61,7 +65,8 @@ namespace GCTray
                 foreach (DirectoryInfo folder in directories)
                 {
                     Profile p = new Profile(folder.Name);
-                    DirectoryInfo athleteDir = new DirectoryInfo(athleteLibrary + "\\" + p.name);
+                    p.athleteFullPath = athleteLibrary + '\\' + p.name;
+                    DirectoryInfo athleteDir = new DirectoryInfo(p.athleteFullPath);
                     FileInfo[] files = athleteDir.GetFiles("*.GCSync.lck", SearchOption.TopDirectoryOnly);
 
                     p.lockfile = athleteLibrary + "\\" + p.name + "\\" + username + ".GCSync.lck";
@@ -94,7 +99,7 @@ namespace GCTray
                 System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles) +
                 "\\goldencheetah\\goldencheetah.exe";
             
-            process.StartInfo.Arguments = "\"" + this.name + "\"";
+            process.StartInfo.Arguments = "\"" + this.athleteFullPath + "\"";
 
             process.EnableRaisingEvents = true;
             process.Exited += process_Exited;
